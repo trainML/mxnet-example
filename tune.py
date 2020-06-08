@@ -121,6 +121,7 @@ best = fmin(
     algo=tpe.suggest,
     max_evals=10,
     trials=trials,
+    max_queue_len=2
 )
 
 print(best)
