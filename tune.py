@@ -96,6 +96,7 @@ space = {
     'seed': 233,
     'mixup': False,
     'norm_layer': None,
+    'use_fpn': False,
     'num_workers': 4,
     'gpus': '0',
     'executor_threads': 1,
@@ -110,7 +111,7 @@ space = {
     'wd': hp.loguniform('wd', log( 1e-5 ), log( 100 )),
     'rpn_smoothl1_rho': 1. / 9.,
     'rcnn_smoothl1_rho': 1.,
-    'use_fpn': hp.choice('use_fpn', [True, False]) 
+    
 }
 
 trials = MongoTrials('mongo://localhost:27017/hyperopt/jobs', exp_key='mxnet_pascal_voc_1')
