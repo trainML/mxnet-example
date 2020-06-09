@@ -101,7 +101,7 @@ space = {
     'gpus': '0',
     'executor_threads': 1,
     'epochs': 1,
-    'batch_size': 1,
+    'batch_size': 2,
     'lr': 0.001,
     'lr_decay': 0.1,
     'lr_decay_epoch':'14,20',
