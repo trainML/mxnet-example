@@ -119,9 +119,9 @@ best = fmin(
     objective,
     space=space,
     algo=tpe.suggest,
-    max_evals=10,
+    max_evals=50,
     trials=trials,
-    max_queue_len=2
+    max_queue_len=4
 )
 
 print(best)
