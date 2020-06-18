@@ -69,7 +69,7 @@ def objective(space):
     # training
     train(net, train_data, val_data, eval_metric, batch_size, ctx, args)
     name, values = eval_metric.get()
-    idx = name.index('mAP')
+    idx = name.index('mAP')    
 
     return {
         "loss": 1 - values[idx],
@@ -77,51 +77,52 @@ def objective(space):
         "eval_time": time.time(),
     }
 
-space = {
-    'network': 'resnet50_v1b',
-    'dataset': 'voc',
-    'save_prefix': '',
-    'horovod': False,
-    'amp': False,
-    'resume': False,
-    'start_epoch': 0,
-    'verbose': False,
-    'custom_model': False,
-    'kv_store': 'nccl',
-    'log_interval': 100,
-    'save_interval': 1,
-    'val_interval': 1,
-    'disable_hybridization': False,
-    'static_alloc': False,
-    'seed': 233,
-    'mixup': False,
-    'norm_layer': None,
-    'use_fpn': False,
-    'num_workers': 4,
-    'gpus': '0',
-    'executor_threads': 1,
-    'epochs': 1,
-    'batch_size': 2,
-    'lr': 0.001,
-    'lr_decay': 0.1,
-    'lr_decay_epoch':'14,20',
-    'lr_warmup': -1,
-    'lr_warmup_factor': 1. / 3.,
-    'momentum': hp.uniform('momentum', 0,1),
-    'wd': hp.loguniform('wd', log( 1e-5 ), log( 100 )),
-    'rpn_smoothl1_rho': 1. / 9.,
-    'rcnn_smoothl1_rho': 1.,
-    
-}
+if __name__ == '__main__':
+    space = {
+        'network': 'resnet50_v1b',
+        'dataset': 'voc',
+        'save_prefix': '',
+        'horovod': False,
+        'amp': False,
+        'resume': False,
+        'start_epoch': 0,
+        'verbose': False,
+        'custom_model': False,
+        'kv_store': 'nccl',
+        'log_interval': 100,
+        'save_interval': 1,
+        'val_interval': 1,
+        'disable_hybridization': False,
+        'static_alloc': False,
+        'seed': 233,
+        'mixup': False,
+        'norm_layer': None,
+        'use_fpn': False,
+        'num_workers': 4,
+        'gpus': '0',
+        'executor_threads': 1,
+        'epochs': 1,
+        'batch_size': 2,
+        'lr': 0.001,
+        'lr_decay': 0.1,
+        'lr_decay_epoch':'14,20',
+        'lr_warmup': -1,
+        'lr_warmup_factor': 1. / 3.,
+        'momentum': hp.uniform('momentum', 0,1),
+        'wd': hp.loguniform('wd', log( 1e-5 ), log( 100 )),
+        'rpn_smoothl1_rho': 1. / 9.,
+        'rcnn_smoothl1_rho': 1.,
+        
+    }
 
-trials = MongoTrials('mongo://localhost:27017/hyperopt/jobs', exp_key='mxnet_pascal_voc_1')
-best = fmin(
-    objective,
-    space=space,
-    algo=tpe.suggest,
-    max_evals=50,
-    trials=trials,
-    max_queue_len=4
-)
+    trials = MongoTrials('mongo://localhost:27017/hyperopt/jobs', exp_key='mxnet_pascal_voc_1')
+    best = fmin(
+        objective,
+        space=space,
+        algo=tpe.suggest,
+        max_evals=50,
+        trials=trials,
+        max_queue_len=4
+    )
 
-print(best)
+    print(best)
