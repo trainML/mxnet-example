@@ -24,7 +24,7 @@ trainML Tutorials - Hyperparameter Tuning an Object Detection Model with MXNet o
 =====
 Before beginning this tutorial, ensure you have created an account on the [trainML platform](https://app.trainml.ai) and you have [Docker](https://docs.docker.com/get-docker/) installed.
 
-> This tutorial should cost less than 150 credits (\$15) if you use the small or medium instance type and the same setting as the guide. Tuning takes approximately 15 hours using 4 medium GPUs or 30 hours using 4 small GPUs.
+> This tutorial should cost less than 180 credits (\$18) if you use the small or medium instance type and the same setting as the guide. Tuning takes approximately 15 hours using 4 medium GPUs or 30 hours using 4 small GPUs.
 
 This tutorial uses the [MXNet Faster-RCNN object detection example](https://gluon-cv.mxnet.io/build/examples_detection/train_faster_rcnn_voc.html) to perform a parallelized hyperparameter tuning job on [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/) using the [hyperopt](https://github.com/hyperopt/hyperopt) library.
 
